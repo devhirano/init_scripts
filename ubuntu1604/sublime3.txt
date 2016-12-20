@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# for markmon plugin
+sudo npm install -g markmon
+sudo apt update 
+sudo apt -y install pandoc
