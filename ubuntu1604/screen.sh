@@ -1,6 +1,6 @@
 #!/bin/bash
 
 sudo apt update
-sudo apt install screen
+sudo apt -y install screen
 
-cp .screenrc ~/.screenrc
+cp screenrc ~/.screenrc
