@@ -1,0 +1,47 @@
+# vi ~/.screenrc
+# Encoding
+defencodig utf-8
+ 
+# Prefix Key
+escape ~Aa
+ 
+# Delete sartt up screen
+startup_message off
+ 
+# Auto detach
+autodetach on
+ 
+# logging
+log on
+deflog on
+logfile "/var/log/screen-%Y%m%d-%n.log"
+ 
+# Show date and screen list
+# hardstatus alwayslastline "%{= rw} %H %{= wk}%-Lw%{= bw}%n%f* %t%{= wk}%+Lw %{= wk}%=%{= gk} %y/%m/%d %c "
+# hardstatus alwayslastline '%{= kw}%02c:%s %{= .w}%H %L=%{= .c}%-w%46>%{= .c}%n %t*%{= .b}%+w%-16=%{= .y}[%l]'
+hardstatus alwayslastline '%{= kw}%02c:%s (%l) %{= .w}%H %L=%{= kc}%-w%46>%{=u wb}%n %t*%{= kc}%+w%-16=%{= .y}[%l]'
+
+# Scroll Buffer
+## default scrollback
+defscrollback 100000
+
+## clear scrollback buffer
+bind F eval 'scrollback 0' 'scrollback 1000' 'echo "scrollback buffer cleared"'
+
+# Color Scheme
+## set color scheme
+defbce on
+term xterm-256color
+
+# motd
+startup_message off
+
+# debug
+verbose on
+
+# workaround for window size
+# xterm 
+termcapinfo xterm 'is=\E[r\E[m\E[2J\E[H\E[?7h\E[?1;4;6l'
+
+# kterm
+# termcapinfo kterm-color 'is=\E[r\E[m\E[2J\E[H\E[?7h\E[?1;4;6l'
