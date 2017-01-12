@@ -45,3 +45,15 @@ termcapinfo xterm 'is=\E[r\E[m\E[2J\E[H\E[?7h\E[?1;4;6l'
 
 # kterm
 # termcapinfo kterm-color 'is=\E[r\E[m\E[2J\E[H\E[?7h\E[?1;4;6l'
+
+# write screen copy buffer to X window clipboard.
+#   - writebuf : screen's command, it write screen's copy buffer to file.
+#                if the filename doesn't specified, /tmp/screen-exchange is used as default.
+#   - xsel -bi : read string and send to X window copy buffer.
+bind > eval writebuf "exec sh -c 'cat /tmp/screen-exchange | xsel -bi'" "echo 'copy to clipboard!'"
+
+# disable default keybind.
+bind ] eval ""
+
+# write clipboard to screen writebuffer through /tmp/screen-exchange file.
+bind < eval "exec sh -c 'xsel -bo >/tmp/screen-exchange'" "echo 'copy to screen writebuffer'"
