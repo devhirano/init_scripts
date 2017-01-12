@@ -57,3 +57,7 @@ bind ] eval ""
 
 # write clipboard to screen writebuffer through /tmp/screen-exchange file.
 bind < eval "exec sh -c 'xsel -bo >/tmp/screen-exchange'" "echo 'copy to screen writebuffer'"
+
+# add scrollback with mouse wheel
+termcapinfo xterm* ti@:te@
+
