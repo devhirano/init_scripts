@@ -1,0 +1,10 @@
+<network>
+  <name>natsrv1</name>
+  <forward mode='nat'/>
+  <bridge name='net1' stp='on' delay='0'/>
+  <ip address='172.16.169.1' netmask='255.255.0.0'>
+    <dhcp>
+      <range start='172.16.169.100' end='172.16.169.200'/>
+    </dhcp>
+  </ip>
+</network>

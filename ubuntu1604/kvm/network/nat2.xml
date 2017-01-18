@@ -1,0 +1,10 @@
+<network>
+  <name>natsto1</name>
+  <forward mode='nat'/>
+  <bridge name='nat2' stp='on' delay='0'/>
+  <ip address='10.0.0.1' netmask='255.255.255.0'>
+    <dhcp>
+      <range start='10.0.0.169' end='10.0.0.199'/>
+    </dhcp>
+  </ip>
+</network>
