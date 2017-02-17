@@ -1,7 +1,7 @@
 #!/bin/bash
 
 sudo apt update
-sudo apt install vim vim-gnome build-essential cmake python-dev python3-dev
+sudo apt install -y vim vim-gnome build-essential cmake python-dev python3-dev
 
 # install neobundle
 pushd /tmp
