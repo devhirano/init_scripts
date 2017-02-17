@@ -1,7 +1,7 @@
 #!/bin/bash
 
 sudo apt update
-sudo apt install -y vim vim-gnome build-essential cmake python-dev python3-dev
+sudo apt install -y vim vim-gnome build-essential cmake python-dev python3-dev exuberant-ctags
 
 # install neobundle
 pushd /tmp
@@ -22,3 +22,10 @@ vim +NeoBundleInstall +qall
 pushd ~/.vim/bundle/YouCompleteMe/
 ./install.py --clang-completer
 popd
+
+
+# TAGLIST
+cp -pR taglist/* ~/.vim/
+
+
+
