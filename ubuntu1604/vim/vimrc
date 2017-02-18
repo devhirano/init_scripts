@@ -34,6 +34,7 @@ syntax on
 set background=dark
 set t_Co=256
 
+set columns=25
 
 " neobundle configuration
 if &compatible
@@ -58,6 +59,11 @@ NeoBundle 'ctrlpvim/ctrlp.vim'
 NeoBundle 'flazz/vim-colorschemes'
 NeoBundle 'Valloric/YouCompleteMe'
 NeoBundle 'Shougo/neocomplete.vim'
+NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'tomtom/tcomment_vim'
+NeoBundle 'nathanaelkane/vim-indent-guides'
+NeoBundle 'bronson/vim-trailing-whitespace'
+NeoBundle 'simeji/winresizer'
 
 " You can specify revision/branch/tag.
 NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
@@ -146,7 +152,41 @@ endif
 let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
 
-
-" TAGLIST
+" [ TAGLIST ]
 nnoremap <silent><C-v> :TlistToggle<CR>
+let Tlist_WinWidth = 32
+let Tlist_Auto_Open = 0
+let Tlist_Auto_Update = 1
+let Tlist_Display_Tag_Scope = 1
+autocmd vimenter * TlistOpen
 
+
+
+" [ NERDTREE ]
+let g:NERDTreeWinSize = 23
+" let g:NERDTreeWinPos = "right"
+nnoremap <silent><C-c> :NERDTreeToggle<CR>
+autocmd vimenter * NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+
+
+" [ vim-indent-guides ]
+let g:indent_guides_enable_on_vim_startup = 1
+
+
+" set number
+function Setnumber()
+  if &number
+    setlocal nonumber
+  else
+    setlocal number
+  endif
+endfunction
+nnoremap <silent> <C-m> :call Setnumber()<CR>
+
+
+" Last Position Settings
+"   move to right x 2
+autocmd VimEnter * wincmd l
+autocmd VimEnter * wincmd l
