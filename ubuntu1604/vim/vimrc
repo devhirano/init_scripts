@@ -34,7 +34,7 @@ syntax on
 set background=dark
 set t_Co=256
 
-set columns=25
+" set columns=25
 set paste
 
 " neobundle configuration
