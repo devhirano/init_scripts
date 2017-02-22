@@ -22,6 +22,6 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
-pyenv install -f 3.5.1
+env PYTHON_CONFIGURE_OPTS="--enable-shared" pyenv install -f 3.5.1
 pyenv rehash
 pyenv global 3.5.1
