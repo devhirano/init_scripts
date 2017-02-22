@@ -34,7 +34,6 @@ syntax on
 set background=dark
 set t_Co=256
 
-set columns=25
 "cannot use it with neocomplete, use instead 'ConradIrwin/vim-bracketed-paste'
 "set paste
 
