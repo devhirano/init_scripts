@@ -35,7 +35,8 @@ set background=dark
 set t_Co=256
 
 set columns=25
-set paste
+"cannot use it with neocomplete, use instead 'ConradIrwin/vim-bracketed-paste'
+"set paste
 
 " neobundle configuration
 if &compatible
@@ -65,6 +66,7 @@ NeoBundle 'tomtom/tcomment_vim'
 NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'bronson/vim-trailing-whitespace'
 NeoBundle 'simeji/winresizer'
+NeoBundle 'ConradIrwin/vim-bracketed-paste'
 
 " You can specify revision/branch/tag.
 NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
