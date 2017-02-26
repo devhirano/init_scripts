@@ -68,6 +68,8 @@ NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'bronson/vim-trailing-whitespace'
 NeoBundle 'simeji/winresizer'
 NeoBundle 'ConradIrwin/vim-bracketed-paste'
+NeoBundle 'tyru/open-browser.vim'
+NeoBundle 'kannokanno/previm'
 
 " You can specify revision/branch/tag.
 NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
@@ -185,6 +187,10 @@ let g:indent_guides_auto_colors = 0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
 
+" [ PreVim ]
+autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
+let g:previm_open_cmd = ''
+nnoremap <silent><C-r> :<C-u>PrevimOpen<CR>
 
 " set number
 function Setnumber()
@@ -201,3 +207,4 @@ nnoremap <silent> <C-m> :call Setnumber()<CR>
 "   move to right x 2
 autocmd VimEnter * wincmd l
 autocmd VimEnter * wincmd l
+
