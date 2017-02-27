@@ -180,6 +180,9 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " always open tab
 let NERDTreeMapOpenInTab='<ENTER>'
 
+
+
+nnoremap <silent><C-x> :TlistToggle<CR> :NERDTreeToggle<CR>
 nnoremap :q :TlistClose<CR> :NERDTreeClose<CR> :q
 nnoremap :wq :TlistClose<CR> :NERDTreeClose<CR> :wq
 
