@@ -164,9 +164,10 @@ let Tlist_WinWidth = 32
 let Tlist_Auto_Open = 0
 let Tlist_Auto_Update = 1
 let Tlist_Display_Tag_Scope = 1
+" close if only window
+let Tlist_Exit_OnlyWindow = 1 
 " no autostart
 " autocmd vimenter * TlistOpen
-
 
 
 " [ NERDTREE ]
@@ -177,6 +178,8 @@ nnoremap <silent><C-c> :NERDTreeToggle<CR>
 " autocmd vimenter * NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
+nnoremap :q :TlistClose<CR> :NERDTreeClose<CR> :q
+nnoremap :wq :TlistClose<CR> :NERDTreeClose<CR> :wq
 
 
 " [ vim-indent-guides ]
