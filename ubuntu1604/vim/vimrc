@@ -177,6 +177,8 @@ nnoremap <silent><C-c> :NERDTreeToggle<CR>
 " no autostart
 " autocmd vimenter * NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" always open tab
+let NERDTreeMapOpenInTab='<ENTER>'
 
 nnoremap :q :TlistClose<CR> :NERDTreeClose<CR> :q
 nnoremap :wq :TlistClose<CR> :NERDTreeClose<CR> :wq
