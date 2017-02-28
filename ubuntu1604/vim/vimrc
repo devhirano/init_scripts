@@ -125,7 +125,10 @@ endfunction
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " <C-h>, <BS>: close popup and delete backword char.
 inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+
+" workaround for delete all input words
+" inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+"
 " Close popup by <Space>.
 "inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
 
@@ -181,11 +184,9 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 let NERDTreeMapOpenInTab='<ENTER>'
 
 
-
 nnoremap <silent><C-x> :TlistToggle<CR> :NERDTreeToggle<CR>
-nnoremap :q :TlistClose<CR> :NERDTreeClose<CR> :q
-nnoremap :wq :TlistClose<CR> :NERDTreeClose<CR> :wq
-
+" nnoremap :q :TlistClose<CR> :NERDTreeClose<CR> :q
+" nnoremap :wq :TlistClose<CR> :NERDTreeClose<CR> :wq
 
 " [ vim-indent-guides ]
 let g:indent_guides_enable_on_vim_startup = 1
