@@ -233,3 +233,11 @@ set backspace=indent,eol,start
 " show special keys and beutiful code
 set list
 set listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:%,eol:↲
+
+" set center for hit search
+nnoremap n nzz
+nnoremap N Nzz
+nnoremap * *zz
+nnoremap # #zz
+nnoremap g* g*zz
+nnoremap g# g#zz
