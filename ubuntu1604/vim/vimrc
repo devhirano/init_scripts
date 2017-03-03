@@ -229,3 +229,7 @@ cnoremap <expr> ? getcmdtype() == '?' ? '\?' : '?'
 
 " delete any keys with backspace
 set backspace=indent,eol,start
+
+" show special keys and beutiful code
+set list
+set listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:%,eol:↲
