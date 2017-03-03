@@ -222,3 +222,10 @@ nnoremap <silent> <C-m> :call Setnumber()<CR>
 autocmd VimEnter * wincmd l
 autocmd VimEnter * wincmd l
 
+
+" search without escape
+cnoremap <expr> / getcmdtype() == '/' ? '\/' : '/'
+cnoremap <expr> ? getcmdtype() == '?' ? '\?' : '?'
+
+" delete any keys with backspace
+set backspace=indent,eol,start
