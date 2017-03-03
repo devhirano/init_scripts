@@ -241,3 +241,6 @@ nnoremap * *zz
 nnoremap # #zz
 nnoremap g* g*zz
 nnoremap g# g#zz
+
+" save sudo with w!!
+cmap w!! w !sudo tee > /dev/null %
