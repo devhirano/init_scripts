@@ -19,7 +19,6 @@ set wildmode=list:longest
 " nnoremap k gk
 
 " set list listchars=tab:\|\_
-set expandtab
 set tabstop=4
 set softtabstop=0 noexpandtab
 set shiftwidth=4
