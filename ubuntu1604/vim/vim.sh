@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -xe
 
 sudo apt update
 sudo apt install -y vim vim-gnome build-essential cmake python-dev python3-dev exuberant-ctags npm
