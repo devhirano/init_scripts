@@ -20,7 +20,8 @@ set wildmode=list:longest
 
 " set list listchars=tab:\|\_
 set tabstop=4
-set softtabstop=0 noexpandtab
+set expandtab
+set softtabstop=0
 set shiftwidth=4
 
 set ignorecase

@@ -1,11 +1,11 @@
-#!/bin/bash
+#!/bin/bash -xe
 
 sudo apt update
 sudo apt install -y vim vim-gnome build-essential cmake python-dev python3-dev exuberant-ctags npm
 
 #" install syntastic libs
 pip install flake8
-npm -g install coffeelint
+sudo npm -g install coffeelint
 
 # install neobundle
 pushd /tmp
