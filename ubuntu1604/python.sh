@@ -25,3 +25,6 @@ eval "$(pyenv virtualenv-init -)"
 env PYTHON_CONFIGURE_OPTS="--enable-shared" pyenv install -f 3.5.1
 pyenv rehash
 pyenv global 3.5.1
+
+pip install --upgrade pip
+
