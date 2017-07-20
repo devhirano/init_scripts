@@ -247,7 +247,9 @@ cnoremap <expr> ? getcmdtype() == '?' ? '\?' : '?'
 set backspace=indent,eol,start
 
 " show special keys and beutiful code
-set list
+" set list
+" disable
+set nolist
 set listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:%,eol:↲
 
 " set center for hit search
