@@ -70,6 +70,7 @@ NeoBundle 'simeji/winresizer'
 NeoBundle 'ConradIrwin/vim-bracketed-paste'
 NeoBundle 'tyru/open-browser.vim'
 NeoBundle 'kannokanno/previm'
+NeoBundle 'SingleCompile'
 NeoBundle "scrooloose/syntastic", {
       \ "build": {
       \   "mac": ["pip install flake8", "npm -g install coffeelint"],
@@ -259,3 +260,7 @@ nnoremap g# g#zz
 
 " save sudo with w!!
 cmap w!! w !sudo tee > /dev/null %
+
+
+nmap <F9> :SCCompile<cr>
+nmap <F10> :SCCompileRun<cr>
