@@ -13,9 +13,9 @@ sudo mv Yosembiance-master/Yosembiance-* /usr/share/themes/
 sudo wget -qO- https://raw.githubusercontent.com/PapirusDevelopmentTeam/papirus-icon-theme/master/install-papirus-root.sh | sh
 
 # ARC theme
-sudo sh -c "echo 'deb http://download.opensuse.org/repositories/home:/Horst3180/xUbuntu_16.04/ /' >> /etc/apt/sources.list.d/arc-theme.list" && \
-wget -q -O - http://download.opensuse.org/repositories/home:Horst3180/xUbuntu_16.04/Release.key | sudo apt-key add - && \
+sudo sh -c "echo 'deb [trusted=yes] http://download.opensuse.org/repositories/home:/Horst3180/xUbuntu_16.04/ /' > /etc/apt/sources.list.d/arc-theme.list" && \
 sudo apt update && sudo apt install arc-theme -y
+# wget -q -O - http://download.opensuse.org/repositories/home:Horst3180/xUbuntu_16.04/Release.key | sudo apt-key add - && \
 
 # Flatabulous
 # https://github.com/anmoljagetia/Flatabulous
