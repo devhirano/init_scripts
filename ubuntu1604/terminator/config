@@ -13,11 +13,16 @@
   broadcast_off = <Primary>backslash
   cycle_next = <Alt>period
   cycle_prev = <Alt>comma
+  go_down = <Alt>backslash
+  go_left = <Alt>backslash
   layout_launcher = <Primary>backslash
   move_tab_left = <Primary>backslash
   move_tab_right = <Primary>backslash
   new_tab = <Alt>n
   next_tab = <Alt>l
+  page_down_half = <Alt>Down
+  page_up = <Alt>backslash
+  page_up_half = <Alt>Up
   prev_tab = <Alt>h
   split_horiz = <Alt>o
   split_vert = <Alt>i
@@ -42,14 +47,13 @@
 [profiles]
   [[default]]
     allow_bold = False
-    background_color = "#333333"
-    background_darkness = 0.87
+    background_color = "#121212"
+    background_darkness = 0.91
     background_image = None
     background_type = transparent
     copy_on_selection = True
-    cursor_shape = ibeam
-    font = Menlo 9
-    foreground_color = "#f3f3f3"
+    font = Menlo 8
+    foreground_color = "#d8d8d8"
     palette = "#2e3436:#f271a9:#4e9a06:#c4a000:#3465a4:#75507b:#06989a:#d3d7cf:#555753:#ef2929:#8ae234:#fce94f:#729fcf:#ad7fa8:#34e2e2:#eeeeec"
     scrollback_infinite = True
     urgent_bell = True
