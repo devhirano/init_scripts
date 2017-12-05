@@ -6,6 +6,8 @@ sudo apt update
 sudo apt install -y nodejs npm
 sudo npm cache clean
 sudo npm install n -g
+sudo npm install bower -g
+sudo npm install grunt -g
 sudo n stable
 sudo ln -sf /usr/local/bin/node /usr/bin/node
 node -v
