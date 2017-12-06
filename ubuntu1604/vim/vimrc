@@ -36,6 +36,17 @@ syntax on
 set background=dark
 set t_Co=256
 
+"syntastic recommend
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+
 "cannot use it with neocomplete, use instead 'ConradIrwin/vim-bracketed-paste'
 "set paste
 
@@ -74,7 +85,7 @@ NeoBundle 'SingleCompile'
 NeoBundle "scrooloose/syntastic", {
       \ "build": {
       \   "mac": ["pip install flake8", "npm -g install coffeelint"],
-      \   "unix": ["pip install flake8", "npm -g install coffeelint"],
+      \   "unix": ["pip install flake8", "sudo npm -g install coffeelint"],
       \ }}
 NeoBundle 'Shougo/vimproc.vim', {
 \ 'build' : {
