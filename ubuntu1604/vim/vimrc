@@ -286,3 +286,7 @@ nnoremap ;l <C-w>l
 nnoremap ;h <C-w>h
 nnoremap ;s :<C-u>sp<CR>
 nnoremap ;v :<C-u>vs<CR>
+
+" nnoremap ;, <C-]><CR>
+nnoremap ;f <C-]>:ts<CR>
+nnoremap ;d <C-t>
