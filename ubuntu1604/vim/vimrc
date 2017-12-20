@@ -185,6 +185,7 @@ let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
 " [ TAGLIST ]
 nnoremap <silent><C-v> :TlistToggle<CR>
+nnoremap ;v :TlistToggle<CR>
 let Tlist_WinWidth = 32
 let Tlist_Auto_Open = 0
 let Tlist_Auto_Update = 1
@@ -199,6 +200,7 @@ let Tlist_Exit_OnlyWindow = 1
 let g:NERDTreeWinSize = 23
 " let g:NERDTreeWinPos = "right"
 nnoremap <silent><C-c> :NERDTreeToggle<CR>
+nnoremap ;c :NERDTreeToggle<CR>
 " no autostart
 " autocmd vimenter * NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -270,15 +272,29 @@ nmap <F10> :SCCompileRun<cr>
 
 " move/create window shortcut
 nnoremap ; <Nop>
-nnoremap ;j <C-w>j
-nnoremap ;k <C-w>k
-nnoremap ;l <C-w>l
-nnoremap ;h <C-w>h
-nnoremap ;s :<C-u>sp<CR>
-nnoremap ;v :<C-u>vs<CR>
+" move window prev/next
+nnoremap ;, <C-w>p
+nnoremap ;. <C-w>w
+" split vertical
+nnoremap ;i :<C-u>vs<CR>
+" split horizontail
+nnoremap ;o :<C-u>sp<CR>
+" move tab prev/next
+nnoremap ;l gt
+nnoremap ;h gT
+
+" vimgrep
+"   search :vim XXX file|%
+nnoremap ;g :vimgrep 
+" enable quickfix hook
+"   :vimgrep XXX file | cw
+autocmd QuickFixCmdPost *grep* cwindow
 
 " nnoremap ;, <C-]><CR>
+  " tag search
+  " next
 nnoremap ;f <C-]>:ts<CR>
+  " before
 nnoremap ;d <C-t>
 
 " python-mode for pydoc help, :help pymode
