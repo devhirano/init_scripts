@@ -71,7 +71,7 @@ NeoBundle 'ConradIrwin/vim-bracketed-paste'
 NeoBundle 'tyru/open-browser.vim'
 NeoBundle 'kannokanno/previm'
 NeoBundle 'SingleCompile'
-NeoBundle 'python-mode/python-mode'
+" NeoBundle 'python-mode/python-mode'
 NeoBundle "scrooloose/syntastic", {
       \ "build": {
       \   "mac": ["pip install flake8", "npm -g install coffeelint"],
@@ -297,6 +297,6 @@ nnoremap ;f <C-]>:ts<CR>
   " before
 nnoremap ;d <C-t>
 
-" python-mode for pydoc help, :help pymode
-let g:pymode_doc_bind = 'K'
-let g:pymode_folding = 0
+" " python-mode for pydoc help, :help pymode
+" let g:pymode_doc_bind = 'K'
+" let g:pymode_folding = 0
