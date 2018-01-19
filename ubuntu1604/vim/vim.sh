@@ -17,6 +17,10 @@ popd
 mkdir -p ~/.vim/colors
 
 # colors
+set +e
+grep "Hybrid Terminal Colours." ~/.Xresources 2>/dev/null 1>/dev/null
+[ "$?" -ne 0 ] && cat Xresources >> ~/.Xresources
+set -e
 curl -o ~/.vim/colors/hybrid.vim https://raw.githubusercontent.com/w0ng/vim-hybrid/master/colors/hybrid.vim
 cp vimrc ~/.vimrc
 
