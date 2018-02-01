@@ -48,6 +48,7 @@ sudo apt install -y vim vim-gnome build-essential cmake python-dev python3-dev e
 
 #" install syntastic libs
 pip install flake8
+pip install jedi
 sudo npm -g install coffeelint
 
 # install neobundle
