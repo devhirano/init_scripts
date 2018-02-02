@@ -1,21 +1,24 @@
 #!/bin/bash -e
 
 howtoreinstallvim () {
-cat << EOT
+cat << 'EOT'
 
 ---------------------
-$ sudo apt purge vim vim-runtime vim-common
-$ sudo install -y git build-essential ncurses-dev lua5.2 lua5.2-dev luajit python-dev python3-dev ruby-dev
-$ TEMP=$(mktemp -d)
-$ git clone https://github.com/vim/vim $TEMP/vim
-$ pushd $TEMP/vim
-$ sudo ./configure --with-features=huge --enable-multibyte \
+* should not use 'sudo', it has no pyenv info.
+
+$ sudo su
+# apt purge vim vim-runtime vim-common
+# apt install -y git build-essential ncurses-dev lua5.2 lua5.2-dev luajit python-dev python3-dev ruby-dev
+# TEMP=$(mktemp -d)
+# git clone https://github.com/vim/vim $TEMP/vim
+# pushd $TEMP/vim
+# ./configure --with-features=huge --enable-multibyte \
 --enable-luainterp=dynamic --enable-gpm \
 --enable-cscope --enable-fontset --enable-fail-if-missing \
 --prefix=/usr/local --enable-pythoninterp=dynamic \
---enable-python3interp=dynamic --enable-rubyinterp=dynamic 
-$ sudo make
-$ sudo make install
+--enable-python3interp=dynamic --enable-rubyinterp=dynamic
+# make
+# make install
 ---------------------
 
 EOT
