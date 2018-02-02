@@ -15,18 +15,21 @@ $ sudo su
 # ./configure --with-features=huge --enable-multibyte \
 --enable-luainterp=dynamic --enable-gpm \
 --enable-cscope --enable-fontset --enable-fail-if-missing \
---prefix=/usr/local --enable-pythoninterp=dynamic \
+--prefix=/usr/local \
 --enable-python3interp=dynamic --enable-rubyinterp=dynamic
 # make
 # make install
 ---------------------
+
+: still static switch by option for to select python version 2 or 3
+: replace to --enable-pythoninterp=dynamic if you need
 
 EOT
 }
 
 set +e
 if [ "$1" != "-f" ];then
-    vim --version |grep -e "+python/dyn" >/dev/null 2>&1
+    vim --version |grep -e "+python3/dyn" >/dev/null 2>&1
     if [ $? -ne 0 ];then
         echo "Python dynamic link library is disabled, so you would have some limitations."
         echo "Set '-f' to install if you don't care."
