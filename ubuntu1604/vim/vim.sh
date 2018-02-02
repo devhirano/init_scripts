@@ -21,6 +21,7 @@ $ sudo make install
 EOT
 }
 
+set +e
 if [ "$1" != "-f" ];then
     vim --version |grep -e "+python/dyn" >/dev/null 2>&1
     if [ $? -ne 0 ];then
@@ -42,6 +43,7 @@ if [ "$1" != "-f" ];then
         exit 1
     fi
 fi
+set -e
 
 sudo apt update
 sudo apt install -y vim vim-gnome build-essential cmake python-dev python3-dev exuberant-ctags npm
