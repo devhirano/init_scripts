@@ -81,13 +81,11 @@ cp vimrc ~/.vimrc
 # install plugins
 vim +NeoBundleInstall +qall
 
-pushd ~/.vim/bundle/YouCompleteMe/
-./install.py --clang-completer
-popd
-
+# disable install YCM
+# pushd ~/.vim/bundle/YouCompleteMe/
+# ./install.py --clang-completer
+# popd
 
 # TAGLIST
 cp -pR taglist/* ~/.vim/
-
-
 
