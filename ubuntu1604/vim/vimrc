@@ -250,7 +250,7 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
 " [ PreVim ]
 autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
 let g:previm_open_cmd = ''
-nnoremap <silent><C-r> :<C-u>PrevimOpen<CR>
+nnoremap <silent><C-b> :<C-u>PrevimOpen<CR>
 
 " set number
 function Setnumber()
