@@ -10,7 +10,7 @@ mkdir -p ~/googledrive
 google-drive-ocamlfuse
 
 # mount
-df -t fuse.google-drive-ocamlfuse 1>/dev/null 2>/dev/null
+mount | grep fuse.google-drive-ocamlfuse 1>/dev/null 2>/dev/null
 if [ $? != 0 ];then
   google-drive-ocamlfuse ~/googledrive
 fi
