@@ -59,6 +59,9 @@ pip install flake8
 pip install jedi
 sudo npm -g install coffeelint
 
+# install vim-autoformat
+pip install autopep8 yapf
+
 # install neobundle
 TEMPDIR=$(mktemp -d)
 pushd $TEMPDIR

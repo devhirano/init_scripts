@@ -107,6 +107,10 @@ let g:quickrun_config._={ 'runner':'vimproc',
 NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
 NeoBundle 'soramugi/auto-ctags.vim'
 
+" autoformat
+NeoBundle 'Chiel92/vim-autoformat'
+
+
 " Do not load vim-pyenv until *.py is opened and
 " make sure that it is loaded after jedi-vim is loaded.
 NeoBundleLazy 'lambdalisue/vim-pyenv', {
@@ -347,3 +351,8 @@ let g:auto_ctags_tags_name = '.tags'
 
 " tell vim where is the tags
 set tags=./tags;,tags;./.tags;,.tags;
+
+" vim-autoformat
+noremap <F3> :Autoformat<CR>
+let g:formatter_yapf_style = 'pep8'
+let g:autoformat_verbosemode=1
