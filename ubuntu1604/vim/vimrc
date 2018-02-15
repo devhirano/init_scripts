@@ -220,7 +220,11 @@ let Tlist_Display_Tag_Scope = 1
 " close if only window
 let Tlist_Exit_OnlyWindow = 1 
 " no autostart
-" autocmd vimenter * TlistOpen
+
+" autostart with specific filetype
+" python
+autocmd Filetype python autocmd vimenter * TlistOpen
+autocmd Filetype python autocmd vimenter * wincmd p
 
 
 " [ NERDTREE ]
