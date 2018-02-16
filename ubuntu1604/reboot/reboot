@@ -1,0 +1,44 @@
+#!/bin/sh
+
+show_usage() {
+    echo "Description: reboot guard wrapper"
+	echo "Hostname   : $(hostname)"
+	echo "Script saved in $(readlink -f $0)"
+    echo "Usage: reboot [OPTIONS]"
+    echo "[OPTIONS]"
+    echo "    -d      dry-run"
+    echo "    -f      reboot"
+    echo "    -h      Show this message."
+    exit $1
+}
+
+__DRY_RUN=
+__FORCE_REBOOT=
+__COMMAND=
+
+while getopts dfh OPTION; do
+    case $OPTION in
+        d)
+            __DRY_RUN=1
+            ;;
+        f)
+            __FORCE_REBOOT=1
+            __COMMAND="/sbin/reboot"
+            ;;
+        h)
+            show_usage 0
+            ;;
+        \?)
+            show_usage 1
+            ;;
+    esac
+done
+
+[ -n "${__DRY_RUN}" ] \
+  && echo "dryrun: $__COMMAND"
+
+[ -z "${__FORCE_REBOOT}" ] \
+  && show_usage 1
+
+[ -z "${__DRY_RUN}" -a -n "${__FORCE_REBOOT}" ] \
+  && $__COMMAND

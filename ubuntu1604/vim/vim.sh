@@ -56,8 +56,19 @@ sudo apt install -y vim vim-gnome build-essential cmake python-dev python3-dev e
 
 #" install syntastic libs
 pip install flake8
+set +e
+mv ~/.flake8 ~/.flake8.bak >/dev/null 2>&1
+if [ $? = 0 ];then
+    echo "~/.flake8 is backed up to ~/.flake8.bak"
+fi
+set -e
+cp flake8 ~/.flake8
+
 pip install jedi
 sudo npm -g install coffeelint
+
+# install vim-autoformat
+pip install autopep8 yapf
 
 # install neobundle
 TEMPDIR=$(mktemp -d)
