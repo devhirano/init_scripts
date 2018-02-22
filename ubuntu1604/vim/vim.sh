@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 
 howtoreinstallvim () {
 cat << 'EOT'
@@ -27,7 +27,6 @@ $ sudo su
 EOT
 }
 
-set +e
 if [ "$1" != "-f" ];then
     vim --version |grep -e "+python3/dyn" >/dev/null 2>&1
     if [ $? -ne 0 ];then
@@ -49,19 +48,16 @@ if [ "$1" != "-f" ];then
         exit 1
     fi
 fi
-set -e
 
 sudo apt update
 sudo apt install -y vim vim-gnome build-essential cmake python-dev python3-dev exuberant-ctags npm
 
 #" install syntastic libs
 pip install flake8
-set +e
 mv ~/.flake8 ~/.flake8.bak >/dev/null 2>&1
 if [ $? = 0 ];then
     echo "~/.flake8 is backed up to ~/.flake8.bak"
 fi
-set -e
 cp flake8 ~/.flake8
 
 pip install jedi
@@ -82,10 +78,8 @@ rm -rf $TEMPDIR
 mkdir -p ~/.vim/colors
 
 # colors
-set +e
 grep "Hybrid Terminal Colours." ~/.Xresources 2>/dev/null 1>/dev/null
 [ "$?" -ne 0 ] && cat Xresources >> ~/.Xresources
-set -e
 curl -o ~/.vim/colors/hybrid.vim https://raw.githubusercontent.com/w0ng/vim-hybrid/master/colors/hybrid.vim
 cp vimrc ~/.vimrc
 
