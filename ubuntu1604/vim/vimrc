@@ -324,7 +324,7 @@ nmap <F10> :SCCompileRun<cr>
 " move/create window shortcut
 nnoremap ; <Nop>
 " move window prev/next
-nnoremap ;, <C-w>p
+nnoremap ;, <C-w>W
 nnoremap ;. <C-w>w
 " split vertical
 nnoremap ;i :<C-u>vs<CR>
