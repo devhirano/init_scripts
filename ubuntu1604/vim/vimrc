@@ -110,6 +110,8 @@ NeoBundle 'soramugi/auto-ctags.vim'
 " autoformat
 NeoBundle 'Chiel92/vim-autoformat'
 
+" gundo for visualize undo history branch
+NeoBundle 'sjl/gundo.vim'
 
 " Do not load vim-pyenv until *.py is opened and
 " make sure that it is loaded after jedi-vim is loaded.
@@ -372,3 +374,17 @@ set tags=./tags;,tags;./.tags;,.tags;
 noremap <F3> :Autoformat<CR>
 let g:formatter_yapf_style = 'pep8'
 let g:autoformat_verbosemode=1
+
+" gundo
+if has('python3')
+    let g:gundo_prefer_python3 = 1
+endif
+nnoremap <F5> :GundoToggle<CR>
+
+if has('persistent_undo')
+  silent !mkdir -p ~/.vim/undo >/dev/null 2>&1
+  set undodir=~/.vim/undo
+  set undofile
+endif
+
+set history=10000
