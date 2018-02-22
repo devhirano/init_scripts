@@ -226,6 +226,13 @@ let Tlist_Use_Right_Window = 1
 " close if only window
 let Tlist_Exit_OnlyWindow = 1
 
+" testing.. 
+"autocmd WinLeave * if (@% == '__Tag_List__') | <C-w>w<CR> | endif
+
+" close if only taglist
+autocmd bufenter * if (winnr("$") == 1 && exists("__Tag_List__")) | q | endif
+
+
 " autostart with specific filetype
 " python
 " autocmd Filetype python autocmd vimenter * TlistOpen
