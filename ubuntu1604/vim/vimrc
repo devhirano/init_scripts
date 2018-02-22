@@ -215,8 +215,8 @@ let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
 
 " [ TAGLIST ]
-nnoremap ;v :TlistToggle<CR> <C-w>w<CR>
-nnoremap <silent><C-v> :TlistToggle<CR> <C-w>w<CR>
+nnoremap ;v :TlistToggle<CR>
+nnoremap <silent><C-v> :TlistToggle<CR>
 let Tlist_WinWidth = 40
 let Tlist_Auto_Open = 0
 let Tlist_Auto_Update = 1
