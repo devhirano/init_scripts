@@ -7,18 +7,18 @@ cat << 'EOT'
 * should not use 'sudo', it has no pyenv info.
 
 $ sudo su
-# apt purge vim vim-runtime vim-common
-# apt install -y git build-essential ncurses-dev lua5.2 lua5.2-dev luajit python-dev python3-dev ruby-dev
-# TEMP=$(mktemp -d)
-# git clone https://github.com/vim/vim $TEMP/vim
-# pushd $TEMP/vim
-# ./configure --with-features=huge --enable-multibyte \
+apt purge vim vim-runtime vim-common && \
+apt install -y git build-essential ncurses-dev lua5.2 lua5.2-dev luajit python-dev python3-dev ruby-dev && \
+TEMP=$(mktemp -d) && \
+git clone https://github.com/vim/vim $TEMP/vim && \
+pushd $TEMP/vim && \
+./configure --with-features=huge --enable-multibyte \
 --enable-luainterp=dynamic --enable-gpm \
 --enable-cscope --enable-fontset --enable-fail-if-missing \
 --prefix=/usr/local \
---enable-python3interp=dynamic --enable-rubyinterp=dynamic
-# make
-# make install
+--enable-python3interp=dynamic --enable-rubyinterp=dynamic && \
+make && \
+make install
 ---------------------
 
 : still static switch by option for to select python version 2 or 3
@@ -52,7 +52,7 @@ fi
 sudo apt update
 sudo apt install -y vim vim-gnome build-essential cmake python-dev python3-dev exuberant-ctags npm
 
-#" install syntastic libs
+# install syntastic libs
 pip install flake8
 mv ~/.flake8 ~/.flake8.bak >/dev/null 2>&1
 if [ $? = 0 ];then

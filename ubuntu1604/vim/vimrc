@@ -306,7 +306,7 @@ set backspace=indent,eol,start
 " set list
 " disable
 set nolist
-set listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:%,eol:↲
+" set listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:%,eol:↲
 
 " set center for hit search
 nnoremap n nzz
