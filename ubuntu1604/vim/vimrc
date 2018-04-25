@@ -71,6 +71,7 @@ NeoBundle 'flazz/vim-colorschemes'
 " NeoBundle 'Valloric/YouCompleteMe'
 NeoBundle 'davidhalter/jedi-vim'
 NeoBundle 'ervandew/supertab'
+NeoBundle 'vim-scripts/LustyExplorer'
 NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'tomtom/tcomment_vim'
@@ -388,3 +389,7 @@ if has('persistent_undo')
 endif
 
 set history=10000
+
+
+" LustyBufferExplorer
+nnoremap ;ll :LustyBufferExplorer<CR>
