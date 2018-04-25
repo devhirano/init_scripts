@@ -18,7 +18,7 @@ cd ~/.rbenv/plugins
 git clone git://github.com/sstephenson/ruby-build.git
 
 RUBY_CONFIGURE_OPTS="--enable-shared" rbenv install 2.3.1
-RUBY_CONFIGURE_OPTS="--enable-shared" rbenv global 2.3.1
+rbenv global 2.3.1
 
 # link if missing shared library
 if [ -z "/usr/lib/x86_64-linux-gnu/libruby.so" ];then
