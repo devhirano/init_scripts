@@ -20,6 +20,8 @@ cat << EOT >> ~/.gitconfig
     cm = commit
     co = checkout
     su = status -uno
+    d = diff
+    dw = diff --word-diff
     difff = diff --word-diff
 EOT
 fi
@@ -29,4 +31,6 @@ cat << EOT >> ~/.alias
 alias g='git'
 alias gs='git s'
 alias gl='git l'
+alias gd='git diff'
+alias gdw='git difff'
 EOT
