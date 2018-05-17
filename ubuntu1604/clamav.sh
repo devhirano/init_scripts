@@ -72,15 +72,31 @@ sudo chown clamav.clamav /var/log/clamav/
 #  sudo clamscan --max-filesize=999M --max-scansize=999M --exclude-dir=/sys/* -i -r --move=/home/restricted-clamuser/virus /
 
 
-cat << 'EOT' | sudo tee /etc/cron.d/clamav 2>&1 >/dev/null
+cat << 'EOT' | sudo tee /usr/local/bin/clamscan_home 2>&1 >/dev/null
 PATH=/usr/sbin:/usr/bin:/sbin:/bin
 TODAY=$(date "+%Y%m%d")
 
-# Activity reports every 10 minutes everyday
-5 3 * * 1-6 root clamscan --max-filesize=999M --max-scansize=999M -i -r --move=/home/restricted-clamuser/virus /home/ -l /var/log/clamav/clamav_daily_${TODAY}.log
+clamscan --max-filesize=999M --max-scansize=999M --exclude-dir=/home/restricted-clamuser/* -i -r --move=/home/restricted-clamuser/virus /home/ -l /var/log/clamav/clamav_home_${TODAY}.log
+EOT
+chmod 755 /usr/local/bin/clamscan_home
+
+cat << 'EOT' | sudo tee /usr/local/bin/clamscan_full 2>&1 >/dev/null
+PATH=/usr/sbin:/usr/bin:/sbin:/bin
+TODAY=$(date "+%Y%m%d")
 
 # Additional run at 23:59 to rotate the statistics file
-5 3 * * 0 root clamscan --max-filesize=999M --max-scansize=999M --exclude-dir=/sys/* -i -r --move=/home/restricted-clamuser/virus / -l /var/log/clamav_weekly_${TODAY}.log
+5 3 * * 0 root clamscan --max-filesize=999M --max-scansize=999M --exclude-dir=/sys/* --exclude-dir=/home/restricted-clamuser/* -i -r --move=/home/restricted-clamuser/virus / -l /var/log/clamav_full_${TODAY}.log
+EOT
+chmod 755 /usr/local/bin/clamscan_full
+
+cat << 'EOT' | sudo tee /etc/cron.d/clamav 2>&1 >/dev/null
+PATH=/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+# Activity reports every 10 minutes everyday
+5 3 * * 1-6 root clamscan_home
+
+# Additional run at 23:59 to rotate the statistics file
+5 3 * * 0 root clamscan_full
 EOT
 
 sudo systemctl restart cron
