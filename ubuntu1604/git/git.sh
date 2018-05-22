@@ -34,3 +34,13 @@ alias gl='git l'
 alias gd='git diff'
 alias gdw='git difff'
 EOT
+
+grep 'source ~/.alias' ~/.bashrc 2>&1 >/dev/null
+if [ $? != 0 ];then
+cat << EOT >> ~/.bashrc
+
+source ~/.alias
+EOT
+fi
+
+source ~/.alias
