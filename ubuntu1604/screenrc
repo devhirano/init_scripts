@@ -2,9 +2,6 @@
 # Encoding
 defencodig utf-8
  
-# Prefix Key
-escape ~Aa
- 
 # Delete sartt up screen
 startup_message off
  
@@ -17,8 +14,6 @@ deflog on
 logfile "/var/log/screen-%Y%m%d-%n.log"
  
 # Show date and screen list
-# hardstatus alwayslastline "%{= rw} %H %{= wk}%-Lw%{= bw}%n%f* %t%{= wk}%+Lw %{= wk}%=%{= gk} %y/%m/%d %c "
-# hardstatus alwayslastline '%{= kw}%02c:%s %{= .w}%H %L=%{= .c}%-w%46>%{= .c}%n %t*%{= .b}%+w%-16=%{= .y}[%l]'
 hardstatus alwayslastline '%{= kw}%02c:%s (%l) %{= .w}%H %L=%{= kc}%-w%46>%{=u wb}%n %t*%{= kc}%+w%-16=%{= .y}[%l]'
 
 # Scroll Buffer
@@ -43,6 +38,16 @@ verbose on
 # xterm 
 termcapinfo xterm 'is=\E[r\E[m\E[2J\E[H\E[?7h\E[?1;4;6l'
 
+
+# Prefix Key
+#  reset escape key to the default
+# default: escape ~Aa
+escape ~At
+#  auxiliary register
+register S ^A
+#  Alt + m produces ^A and acts as an escape key
+bindkey "^[m" process S
+
 # kterm
 # termcapinfo kterm-color 'is=\E[r\E[m\E[2J\E[H\E[?7h\E[?1;4;6l'
 
@@ -52,24 +57,26 @@ termcapinfo xterm 'is=\E[r\E[m\E[2J\E[H\E[?7h\E[?1;4;6l'
 #   - xsel -bi : read string and send to X window copy buffer.
 bind > eval writebuf "exec sh -c 'cat /tmp/screen-exchange | xsel -bi'" "echo 'copy to clipboard!'"
 
+# write clipboard to screen writebuffer through /tmp/screen-exchange file.
+bind < eval "exec sh -c 'xsel -bo >/tmp/screen-exchange'" "echo 'copy to screen writebuffer'"
+
 # disable default keybind.
 bind ] eval ""
 
-# write clipboard to screen writebuffer through /tmp/screen-exchange file.
-bind < eval "exec sh -c 'xsel -bo >/tmp/screen-exchange'" "echo 'copy to screen writebuffer'"
 
 # add scrollback with mouse wheel
 termcapinfo xterm* ti@:te@
 
 # Resize window
+#   [Alt+m] + e + hjkl
 bind e eval 'command -c resize' 'echo "Resize window"'
 bind ^e eval 'command -c resize' 'echo "Resize window"'
-bind -c resize h eval 'command -c resize' 'resize -h -1'
-bind -c resize l eval 'command -c resize' 'resize -h +1'
+bind -c resize h eval 'command -c resize' 'resize -h +1'
+bind -c resize l eval 'command -c resize' 'resize -h -1'
 bind -c resize j eval 'command -c resize' 'resize -v +1'
 bind -c resize k eval 'command -c resize' 'resize -v -1'
-bind -c resize ^h eval 'command -c resize' 'resize -h -1'
-bind -c resize ^l eval 'command -c resize' 'resize -h +1'
+bind -c resize ^h eval 'command -c resize' 'resize -h +1'
+bind -c resize ^l eval 'command -c resize' 'resize -h -1'
 bind -c resize ^j eval 'command -c resize' 'resize -v +1'
 bind -c resize ^k eval 'command -c resize' 'resize -v -1'
 
@@ -104,8 +111,13 @@ bind -c rsz -k ku eval "focus up"    "command -c rsz" # Up
 bind -c rsz -k kd eval "focus down" "command -c rsz" # Down
 
 bind l windowlist -b
-bind n next
-bind p prev
+bind i eval "split -v" focus screen
+bind o eval split focus screen
+bind n focus
+bind p focus left
+bind . next
+bind , prev
+bind r remove
 
 defmousetrack on
 mousetrack off
