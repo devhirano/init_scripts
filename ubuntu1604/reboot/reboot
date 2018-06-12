@@ -13,16 +13,24 @@ show_usage() {
 }
 
 check_vm() {
-  if [ $(virsh list --state-running --name|wc -l) -ge 2 ];then
-    echo "virsh vm is runnning."
-    exit 1
+  set +e
+  which virsh 2>&1 >/dev/null
+  if [ $? -eq 0 ];then
+    if [ $(virsh list --state-running --name|wc -l) -ge 2 ];then
+      echo "virsh vm is runnning."
+      exit 1
+    fi
   fi
+  set -e
 }
 
 check_docker() {
-  if [ $(docker ps -q |wc -l) -ne 0 ];then
-    echo "docker container is runnning."
-    exit 1
+  which docker 2>&1 >/dev/null
+  if [ $? -eq 0 ];then
+    if [ $(docker ps -q |wc -l) -ne 0 ];then
+      echo "docker container is runnning."
+      exit 1
+    fi
   fi
 }
 
