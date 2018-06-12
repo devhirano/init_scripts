@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -e
 
 show_usage() {
     echo "Description: reboot guard wrapper"
@@ -10,6 +10,20 @@ show_usage() {
     echo "    -f      reboot"
     echo "    -h      Show this message."
     exit $1
+}
+
+check_vm() {
+  if [ $(virsh list --state-running --name|wc -l) -ge 2 ];then
+    echo "virsh vm is runnning."
+    exit 1
+  fi
+}
+
+check_docker() {
+  if [ $(docker ps -q |wc -l) -ne 0 ];then
+    echo "docker container is runnning."
+    exit 1
+  fi
 }
 
 __DRY_RUN=
@@ -41,4 +55,6 @@ done
   && show_usage 1
 
 [ -z "${__DRY_RUN}" -a -n "${__FORCE_REBOOT}" ] \
+  && check_vm \
+  && check_docker \
   && $__COMMAND
