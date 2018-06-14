@@ -55,13 +55,15 @@ bindkey "^[m" process S
 #   - writebuf : screen's command, it write screen's copy buffer to file.
 #                if the filename doesn't specified, /tmp/screen-exchange is used as default.
 #   - xsel -bi : read string and send to X window copy buffer.
-bind > eval writebuf "exec sh -c 'cat /tmp/screen-exchange | xsel -bi'" "echo 'copy to clipboard!'"
 
+## COPY
+bufferfile /tmp/screen-exchange.$USER
+bind > eval writebuf "exec sh -c 'cat /tmp/screen-exchange.$USER | xsel -bi'" "echo 'copy to clipboard!'" "exec sh -c 'rm -rf /tmp/screen-exchange.$USER'"
+
+## PASTE
 # write clipboard to screen writebuffer through /tmp/screen-exchange file.
-bind < eval "exec sh -c 'xsel -bo >/tmp/screen-exchange'" "echo 'copy to screen writebuffer'"
-
-# disable default keybind.
-bind ] eval ""
+bind < eval "exec sh -c 'xsel -bo >/tmp/screen-exchange.$USER'" readbuf "echo 'copy to screen writebuffer'" "exec sh -c 'rm -rf /tmp/screen-exchange.$USER'"
+bind ] eval "paste ."
 
 
 # add scrollback with mouse wheel
@@ -120,4 +122,4 @@ bind , prev
 bind r remove
 
 defmousetrack on
-mousetrack off
+mousetrack on
