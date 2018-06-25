@@ -137,8 +137,8 @@ bind p focus left
 bind . next
 bind , prev
 
-# [Alt+k] is remove regions
-bindkey "^[k" eval remove
+# [Alt+r] is remove regions
+bindkey "^[r" eval remove
 bind r remove
 
 defmousetrack on
