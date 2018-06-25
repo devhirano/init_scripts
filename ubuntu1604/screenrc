@@ -42,9 +42,10 @@ termcapinfo xterm 'is=\E[r\E[m\E[2J\E[H\E[?7h\E[?1;4;6l'
 # Prefix Key
 #  reset escape key to the default
 # default: escape ~Aa
-escape ~At
+# escape ~At
+escape ^Tt
 #  auxiliary register
-register S ^A
+register S ^T
 #  Alt + m produces ^A and acts as an escape key
 bindkey "^[m" process S
 
@@ -70,7 +71,9 @@ bind ] eval "paste ."
 termcapinfo xterm* ti@:te@
 
 # Resize window
-#   [Alt+m] + e + hjkl
+#   [Alt+m] + e : hjkl
+#   [Alt+e] : hjkl
+bindkey "^[e" eval 'command -c resize' 'echo "Resize window"'
 bind e eval 'command -c resize' 'echo "Resize window"'
 bind ^e eval 'command -c resize' 'echo "Resize window"'
 bind -c resize h eval 'command -c resize' 'resize -h +1'
@@ -89,36 +92,53 @@ bindkey "^[[1;5A" focus up
 bindkey "^[[1;5B" focus down
 
 # switch windows with F3 (prev) and F4 (next)
-bindkey "^[OR" prev
-bindkey "^[OS" next
+# bindkey "^[OR" prev
+# bindkey "^[OS" next
 
 # switch layouts with Ctrl+F3 (prev layout) and Ctrl+F4 (next)
-bindkey "^[O1;5R" layout prev
-bindkey "^[O1;5S" layout next
+# bindkey "^[O1;5R" layout prev
+# bindkey "^[O1;5S" layout next
 
 # F2 puts Screen into resize mode. Resize regions using hjkl keys.
-bindkey "^[OQ" eval "command -c rsz" # enter resize mode
+# bindkey "^[OQ" eval "command -c rsz" # enter resize mode
+
+# [Alt+.] into resize mode. Resize regions using hjkl keys.
+bindkey "^[." eval "command -c rsz"
 
 # use hjkl keys to resize regions
-bind -c rsz h eval "resize -h -5" "command -c rsz"
-bind -c rsz j eval "resize -v -5" "command -c rsz"
-bind -c rsz k eval "resize -v +5" "command -c rsz"
-bind -c rsz l eval "resize -h +5" "command -c rsz"
+bind -c rsz h eval "resize -h -2" "command -c rsz"
+bind -c rsz j eval "resize -v -2" "command -c rsz"
+bind -c rsz k eval "resize -v +2" "command -c rsz"
+bind -c rsz l eval "resize -h +2" "command -c rsz"
 
 # quickly switch between regions using tab and arrows
+bind -c rsz ,     eval "prev"        "command -c rsz" # Prev
+bind -c rsz .     eval "next"        "command -c rsz" # Next
 bind -c rsz \t    eval "focus"       "command -c rsz" # Tab
 bind -c rsz -k kl eval "focus left"  "command -c rsz" # Left
 bind -c rsz -k kr eval "focus right" "command -c rsz" # Right
 bind -c rsz -k ku eval "focus up"    "command -c rsz" # Up
 bind -c rsz -k kd eval "focus down" "command -c rsz" # Down
 
+# show window list as Alt + , or super + l
+bindkey "^[," windowlist -b
 bind l windowlist -b
+
+# [Alt+i] is split vertical
+bindkey "^[i" eval "split -v" focus screen
 bind i eval "split -v" focus screen
+
+# [Alt+o] is split horizontal
+bindkey "^[o" eval split focus screen
 bind o eval split focus screen
+
 bind n focus
 bind p focus left
 bind . next
 bind , prev
+
+# [Alt+k] is remove regions
+bindkey "^[k" eval remove
 bind r remove
 
 defmousetrack on
