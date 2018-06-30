@@ -8,3 +8,7 @@ sudo modprobe vhost_net
 sudo cat /etc/modules | grep vhost_net || sudo sh -c 'echo "vhost_net" >> /etc/modules'
 
 
+
+### only debug
+# check svm|vmx
+ cat /proc/cpuinfo | grep -E 'svm|vmx'
