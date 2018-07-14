@@ -1,0 +1,145 @@
+# vi ~/.screenrc
+# Encoding
+defencodig utf-8
+ 
+# Delete sartt up screen
+startup_message off
+ 
+# Auto detach
+autodetach on
+ 
+# logging
+log on
+deflog on
+logfile "/var/log/screen-%Y%m%d-%n.log"
+ 
+# Show date and screen list
+hardstatus alwayslastline '%{= kw}%02c:%s (%l) %{= .w}%H %L=%{= kc}%-w%46>%{=u wb}%n %t*%{= kc}%+w%-16=%{= .y}[%l]'
+
+# Scroll Buffer
+## default scrollback
+defscrollback 100000
+
+## clear scrollback buffer
+bind F eval 'scrollback 0' 'scrollback 1000' 'echo "scrollback buffer cleared"'
+
+# Color Scheme
+## set color scheme
+defbce on
+term xterm-256color
+
+# motd
+startup_message off
+
+# debug
+verbose on
+
+# workaround for window size
+# xterm 
+termcapinfo xterm 'is=\E[r\E[m\E[2J\E[H\E[?7h\E[?1;4;6l'
+
+
+# Prefix Key
+#  reset escape key to the default
+# default: escape ~Aa
+# escape ~At
+escape ^Tt
+#  auxiliary register
+register S ^T
+#  Alt + m produces ^A and acts as an escape key
+bindkey "^[m" process S
+
+# kterm
+# termcapinfo kterm-color 'is=\E[r\E[m\E[2J\E[H\E[?7h\E[?1;4;6l'
+
+# write screen copy buffer to X window clipboard.
+#   - writebuf : screen's command, it write screen's copy buffer to file.
+#                if the filename doesn't specified, /tmp/screen-exchange is used as default.
+#   - xsel -bi : read string and send to X window copy buffer.
+
+## COPY
+bufferfile /tmp/screen-exchange.$USER
+bind > eval writebuf "exec sh -c 'cat /tmp/screen-exchange.$USER | xsel -bi'" "echo 'copy to clipboard!'" "exec sh -c 'rm -rf /tmp/screen-exchange.$USER'"
+
+## PASTE
+# write clipboard to screen writebuffer through /tmp/screen-exchange file.
+bind < eval "exec sh -c 'xsel -bo >/tmp/screen-exchange.$USER'" readbuf "echo 'copy to screen writebuffer'" "exec sh -c 'rm -rf /tmp/screen-exchange.$USER'"
+bind ] eval "paste ."
+
+
+# add scrollback with mouse wheel
+termcapinfo xterm* ti@:te@
+
+# Resize window
+#   [Alt+m] + e : hjkl
+#   [Alt+e] : hjkl
+bindkey "^[e" eval 'command -c resize' 'echo "Resize window"'
+bind e eval 'command -c resize' 'echo "Resize window"'
+bind ^e eval 'command -c resize' 'echo "Resize window"'
+bind -c resize h eval 'command -c resize' 'resize -h +1'
+bind -c resize l eval 'command -c resize' 'resize -h -1'
+bind -c resize j eval 'command -c resize' 'resize -v +1'
+bind -c resize k eval 'command -c resize' 'resize -v -1'
+bind -c resize ^h eval 'command -c resize' 'resize -h +1'
+bind -c resize ^l eval 'command -c resize' 'resize -h -1'
+bind -c resize ^j eval 'command -c resize' 'resize -v +1'
+bind -c resize ^k eval 'command -c resize' 'resize -v -1'
+
+# navigating regions with Ctrl-arrows
+bindkey "^[[1;5D" focus left
+bindkey "^[[1;5C" focus right
+bindkey "^[[1;5A" focus up
+bindkey "^[[1;5B" focus down
+
+# switch windows with F3 (prev) and F4 (next)
+# bindkey "^[OR" prev
+# bindkey "^[OS" next
+
+# switch layouts with Ctrl+F3 (prev layout) and Ctrl+F4 (next)
+# bindkey "^[O1;5R" layout prev
+# bindkey "^[O1;5S" layout next
+
+# F2 puts Screen into resize mode. Resize regions using hjkl keys.
+# bindkey "^[OQ" eval "command -c rsz" # enter resize mode
+
+# [Alt+.] into resize mode. Resize regions using hjkl keys.
+bindkey "^[." eval "command -c rsz"
+
+# use hjkl keys to resize regions
+bind -c rsz h eval "resize -h -2" "command -c rsz"
+bind -c rsz j eval "resize -v -2" "command -c rsz"
+bind -c rsz k eval "resize -v +2" "command -c rsz"
+bind -c rsz l eval "resize -h +2" "command -c rsz"
+
+# quickly switch between regions using tab and arrows
+bind -c rsz ,     eval "prev"        "command -c rsz" # Prev
+bind -c rsz .     eval "next"        "command -c rsz" # Next
+bind -c rsz \t    eval "focus"       "command -c rsz" # Tab
+bind -c rsz -k kl eval "focus left"  "command -c rsz" # Left
+bind -c rsz -k kr eval "focus right" "command -c rsz" # Right
+bind -c rsz -k ku eval "focus up"    "command -c rsz" # Up
+bind -c rsz -k kd eval "focus down" "command -c rsz" # Down
+
+# show window list as Alt + , or super + l
+bindkey "^[," windowlist -b
+bind l windowlist -b
+
+# [Alt+i] is split vertical
+bindkey "^[i" eval "split -v" focus screen
+bind i eval "split -v" focus screen
+
+# [Alt+o] is split horizontal
+bindkey "^[o" eval split focus screen
+bind o eval split focus screen
+
+bind n focus
+bind p focus left
+bind . next
+bind , prev
+
+# [Alt+r] is remove regions
+bindkey "^[r" eval remove
+bind r remove
+
+defmousetrack on
+mousetrack on
