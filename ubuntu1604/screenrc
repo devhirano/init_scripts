@@ -1,6 +1,7 @@
 # vi ~/.screenrc
 # Encoding
 defencodig utf-8
+cjkwidth
  
 # Delete sartt up screen
 startup_message off
