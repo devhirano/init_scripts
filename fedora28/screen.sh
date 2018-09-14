@@ -1,5 +1,5 @@
 #!/bin/bash
 
-dnf install screen xsel
+sudo dnf install screen xsel
 
 cp screenrc ~/.screenrc
