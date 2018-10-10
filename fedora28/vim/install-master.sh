@@ -12,7 +12,7 @@ which vim || \
     --enable-cscope --enable-fontset --enable-fail-if-missing \
     --prefix=/usr/local \
     --enable-python3interp=dynamic --enable-rubyinterp && \
-    make && \
+    sudo make && \
     sudo make install && \
     popd
 
