@@ -11,16 +11,20 @@ which vim || \
     --enable-luainterp=dynamic --enable-gpm \
     --enable-cscope --enable-fontset --enable-fail-if-missing \
     --prefix=/usr/local \
-    --enable-python3interp=dynamic --enable-rubyinterp && \
+    --enable-pythoninterp=dynamic \
+    --enable-python3interp=dynamic \
+    --enable-rubyinterp \
+    --enable-lualinterp \
+    && \
     sudo make && \
     sudo make install && \
     popd
 
 # install syntastic libs
 pip install flake8
-mv ~/.flake8 ~/.flake8.bak >/dev/null 2>&1 && \
-    echo "~/.flake8 is backed up to ~/.flake8.bak"
-cp flake8 ~/.flake8
+cp ~/.flake8{,.bak} >/dev/null 2>&1 && echo "~/.flake8 is backed up to ~/.flake8.bak"
+pwd
+cp -p flake8 ~/.flake8
 
 pip install jedi
 npm -g install coffeelint
