@@ -106,7 +106,7 @@ let g:quickrun_config._={ 'runner':'vimproc',
 
 " You can specify revision/branch/tag.
 NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
-NeoBundle 'soramugi/auto-ctags.vim'
+" NeoBundle 'soramugi/auto-ctags.vim'
 
 " autoformat
 NeoBundle 'Chiel92/vim-autoformat'
@@ -365,8 +365,8 @@ let g:jedi#use_splits_not_buffers = 1
 let g:jedi#auto_close_doc = 0
 
 " auto ctags as hidden file
-let g:auto_ctags = 1
-let g:auto_ctags_tags_name = '.tags'
+" let g:auto_ctags = 1
+" let g:auto_ctags_tags_name = '.tags'
 
 " tell vim where is the tags
 set tags=./tags;,tags;./.tags;,.tags;
