@@ -2,21 +2,26 @@
 
 set -ex
 
-which vim || \
-    sudo dnf -y install ncurses ncurses-devel lua-devel && \
-    TEMP=$(mktemp -d) && \
-    git clone https://github.com/vim/vim $TEMP/vim && \
+TEMP="/var/tmp/vim-source"
+
+mkdir -p $TEMP
+rm -rf $TEMP/*
+
+sudo dnf -y install ncurses ncurses-devel lua-devel && \
+    # git clone https://github.com/vim/vim $TEMP/vim && \
     pushd $TEMP/vim && \
-    ./configure --with-features=huge --enable-multibyte \
-    --enable-luainterp=dynamic --enable-gpm \
-    --enable-cscope --enable-fontset --enable-fail-if-missing \
-    --prefix=/usr/local \
-    --enable-pythoninterp=dynamic \
-    --enable-python3interp=dynamic \
-    --enable-rubyinterp \
-    --enable-lualinterp \
+    make distclean && \
+        LDFLAGS="-Wl,-rpath=${HOME}/.pyenv/versions/2.7.15/lib:${HOME}/.pyenv/versions/3.5.3/lib" \
+        ./configure --with-features=huge --enable-multibyte \
+        --enable-luainterp=dynamic --enable-gpm \
+        --enable-cscope --enable-fontset --enable-fail-if-missing \
+        --prefix=/usr/local \
+        --enable-pythoninterp=dynamic \
+        --enable-python3interp=dynamic \
+        --enable-rubyinterp \
+        --enable-luainterp \
     && \
-    sudo make && \
+    make && \
     sudo make install && \
     popd
 
