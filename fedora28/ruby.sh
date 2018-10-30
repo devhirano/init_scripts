@@ -21,6 +21,6 @@ git clone git://github.com/sstephenson/ruby-build.git
 # RUBY_CONFIGURE_OPTS="--enable-shared" rbenv install 2.3.1
 # rbenv install 2.3.1
 # RUBY_CONFIGURE_OPTS="--with-readline-dir=/usr/lib" CC=/usr/bin/gcc-6 rbenv install 2.3.1
-rbenv install 2.5.1
+CONFIGURE_OPTS="--disable-install-rdoc --enable-shared" rbenv install 2.5.1
 rbenv global 2.5.1
 rbenv rehash
