@@ -25,8 +25,9 @@ eval "$(pyenv virtualenv-init -)"
 # if you have no resources, set MAKEOPTS like following
 # export MAKEOPTS="-j 1 -l 2.5"
 
-PYENV_CONFIGURE_OPTS="--enable-shared" CFLAGS=-I/usr/include/openssl LDFLAGS=-L/usr/lib64 pyenv install -f 3.5.3
-PYENV_CONFIGURE_OPTS="--enable-shared" CFLAGS=-I/usr/include/openssl LDFLAGS=-L/usr/lib64 pyenv install -f 2.7.15
+CONFIGURE_OPTS="--enable-shared" CFLAGS=-I/usr/include/openssl pyenv install -f 3.5.3
+CONFIGURE_OPTS="--enable-shared" CFLAGS=-I/usr/include/openssl pyenv install -f 2.7.15
+
 pyenv rehash
 pyenv global 2.7.15 3.5.3
 
