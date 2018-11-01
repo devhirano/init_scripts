@@ -2,7 +2,8 @@
 # E221: multiple spaces before operator
 # E402: module level import not at top of file
 # E203: whitespace before ':'
-ignore = E221,E402,E203
+# E241: multiple spaces after ':'
+ignore = E221,E402,E203,E241
 exclude = .git,__pycache__,docs
 max-line-length = 120
 max-complexity = 10
