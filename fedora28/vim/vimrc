@@ -106,7 +106,7 @@ let g:quickrun_config._={ 'runner':'vimproc',
 
 " You can specify revision/branch/tag.
 NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
-" NeoBundle 'soramugi/auto-ctags.vim'
+NeoBundle 'soramugi/auto-ctags.vim'
 
 " autoformat
 NeoBundle 'Chiel92/vim-autoformat'

@@ -7,8 +7,10 @@ TEMP="/var/tmp/vim-source"
 mkdir -p $TEMP
 rm -rf $TEMP/*
 
-sudo dnf -y install ncurses ncurses-devel lua-devel && \
-    # git clone https://github.com/vim/vim $TEMP/vim && \
+which npm >/dev/null 2>&1 || ./nodejs-2018.sh
+
+sudo dnf -y install ncurses ncurses-devel lua-devel ctags-etags && \
+    git clone https://github.com/vim/vim $TEMP/vim && \
     pushd $TEMP/vim && \
     make distclean && \
         LDFLAGS="-Wl,-rpath=${HOME}/.pyenv/versions/2.7.15/lib:${HOME}/.pyenv/versions/3.5.3/lib" \
