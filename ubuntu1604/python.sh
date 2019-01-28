@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo apt install -y gcc g++ make openssl libssl-dev libbz2-dev libreadline-dev libsqlite3-dev
+sudo apt install -y gcc g++ make openssl libssl-dev libbz2-dev libreadline-dev libsqlite3-dev python-tk tk-dev
 
 git clone -q https://github.com/yyuu/pyenv.git ~/.pyenv
 git clone -q https://github.com/yyuu/pyenv-virtualenv.git ~/.pyenv/plugins/pyenv-virtualenv
