@@ -1,4 +1,4 @@
-#!/bin/bash
+-#!/bin/bash
 
 howtoreinstallvim () {
 cat << 'EOT'
@@ -28,29 +28,29 @@ EOT
 }
 
 if [ "$1" != "-f" ];then
-    vim --version |grep -e "+python3/dyn" >/dev/null 2>&1
-    if [ $? -ne 0 ];then
-        echo "Python dynamic link library is disabled, so you would have some limitations."
-        echo "Set '-f' to install if you don't care."
-        echo
-        echo "Or, you MAYBE can re-install vim as follows."
-        howtoreinstallvim
-        exit 1
-    fi
+    which vim >/dev/null 2>&1
+    if [ $? -eq 0 ]; then
+        vim --version |grep -e "+python3/dyn" >/dev/null 2>&1
+            if [ $? -ne 0 ];then
+            echo "Python dynamic link library is disabled, so you would have some limitations."
+            echo "Set '-f' to install if you don't care."
+            echo
+            echo "Or, you MAYBE can re-install vim as follows."
+            howtoreinstallvim
+            exit 1
+        fi
 
-    vim --version |grep -e "+lua/dyn" >/dev/null 2>&1
-    if [ $? -ne 0 ];then
-        echo "Lua dynamic link library is disabled, so you would have some limitations."
-        echo "Set '-f' to install if you don't care."
-        echo
-        echo "Or, you MAYBE can re-install vim as follows."
-        howtoreinstallvim
-        exit 1
+        vim --version |grep -e "+lua/dyn" >/dev/null 2>&1
+        if [ $? -ne 0 ];then
+            echo "Lua dynamic link library is disabled, so you would have some limitations."
+            echo "Set '-f' to install if you don't care."
+            echo
+            echo "Or, you MAYBE can re-install vim as follows."
+            howtoreinstallvim
+            exit 1
+        fi
     fi
 fi
-
-sudo apt update
-sudo apt install -y vim vim-gnome build-essential cmake python-dev python3-dev exuberant-ctags npm
 
 # install syntastic libs
 pip install flake8

@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -u
-
 if [ -z "$GOPATH" ];then
   echo "Have to install golang to use hub command."
   exit 1
@@ -17,16 +15,23 @@ git config --global user.useConfigOnly true
 git config --global core.excludesfile ~/.gitignore_global
 cp gitignore_global ~/.gitignore_global
 
-
 mkdir -p "$GOPATH"/src/github.com/github
+rm -rf "$GOPATH"/src/github.com/github/hub
 git clone \
   --config transfer.fsckobjects=false \
   --config receive.fsckobjects=false \
   --config fetch.fsckobjects=false \
   https://github.com/github/hub.git "$GOPATH"/src/github.com/github/hub
 cd "$GOPATH"/src/github.com/github/hub
-make install prefix=/usr/local
 
+echo $PATH |grep $HOME/bin >/dev/null 2>&1
+if [ $? != 0 ]; then
+mkdir -p $HOME/bin
+echo 'export PATH=$HOME/bin:$HOME/bin/bin:$PATH' >> ~/.bashrc
+source ~/.bashrc
+fi
+
+make install prefix=$HOME/bin
 
 grep alias ~/.gitconfig >/dev/null 2>&1
 if [ $? -ne 0 ];then
@@ -53,6 +58,7 @@ alias gs='git s'
 alias gl='git l'
 alias gd='git diff'
 alias gdw='git difff'
+alias gf='git fetch --all --prune --tags'
 EOT
 
 grep 'source ~/.alias' ~/.bashrc >/dev/null 2>&1

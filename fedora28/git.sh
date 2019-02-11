@@ -32,6 +32,7 @@ alias gs='git s'
 alias gl='git l'
 alias gd='git diff'
 alias gdw='git difff'
+alias gf='git fetch --all --prune --tags'
 EOT
 
 grep 'source ~/.alias' ~/.bashrc 2>&1 >/dev/null

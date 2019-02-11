@@ -14,6 +14,7 @@ if [ $? != 0 ];then
   echo '' >> ~/.bashrc
 fi
 source ~/.bashrc
+. ~/.bashrc
 
 # check
 go version

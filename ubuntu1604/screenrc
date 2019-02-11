@@ -13,9 +13,11 @@ autodetach on
 log on
 deflog on
 logfile "/var/log/screen-%Y%m%d-%n.log"
- 
+
 # Show date and screen list
-hardstatus alwayslastline '%{= kw}%02c:%s (%l) %{= .w}%H %L=%{= kc}%-w%46>%{=u wb}%n %t*%{= kc}%+w%-16=%{= .y}[%l]'
+backtick 1 600 600 date +%Y/%m/%d
+backtick 5 60 60 $HOME/.screen/upower_p.sh
+hardstatus alwayslastline '%{= kw}%02c:%s (%l) %{= .w}%H %L=%{= kc}%-w%46>%{=u wb}%n %t*%{= kc}%+w%-18=%{= .y} [%5`] %1`'
 
 # Scroll Buffer
 ## default scrollback
@@ -33,6 +35,7 @@ term xterm-256color
 startup_message off
 
 # debug
+# debug on
 verbose on
 
 # workaround for window size
@@ -60,11 +63,11 @@ bindkey "^[m" process S
 
 ## COPY
 bufferfile /tmp/screen-exchange.$USER
-bind > eval writebuf "exec sh -c 'cat /tmp/screen-exchange.$USER | xsel -bi'" "echo 'copy to clipboard!'" "exec sh -c 'rm -rf /tmp/screen-exchange.$USER'"
+bind > eval writebuf "exec sh -c 'cat /tmp/screen-exchange.$USER | xsel -bi && echo copy to clipboard!'"
 
 ## PASTE
 # write clipboard to screen writebuffer through /tmp/screen-exchange file.
-bind < eval "exec sh -c 'xsel -bo >/tmp/screen-exchange.$USER'" readbuf "echo 'copy to screen writebuffer'" "exec sh -c 'rm -rf /tmp/screen-exchange.$USER'"
+bind < eval "exec sh -c 'xsel -bo >/tmp/screen-exchange.$USER" "readbuf /tmp/screen-exchange.$USER"
 bind ] eval "paste ."
 
 
@@ -103,14 +106,18 @@ bindkey "^[[1;5B" focus down
 # F2 puts Screen into resize mode. Resize regions using hjkl keys.
 # bindkey "^[OQ" eval "command -c rsz" # enter resize mode
 
-# [Alt+.] into resize mode. Resize regions using hjkl keys.
-bindkey "^[." eval "command -c rsz"
-
+# [Alt+.] into move mode. Resize regions using hjkl keys.
 # use hjkl keys to resize regions
-bind -c rsz h eval "resize -h -2" "command -c rsz"
-bind -c rsz j eval "resize -v -2" "command -c rsz"
-bind -c rsz k eval "resize -v +2" "command -c rsz"
-bind -c rsz l eval "resize -h +2" "command -c rsz"
+bindkey "^[." eval "command -c move"
+bindkey ^. eval 'command -c move' 'echo "Move"'
+bind -c move h eval "command -c move" "focus left"
+bind -c move j eval "command -c move" "focus down"
+bind -c move k eval "command -c move" "focus up"
+bind -c move l eval "command -c move" "focus right"
+bind -c move ^h eval "command -c move" "focus left"
+bind -c move ^j eval "command -c move" "focus down"
+bind -c move ^k eval "command -c move" "focus up"
+bind -c move ^l eval "command -c move" "focus right"
 
 # quickly switch between regions using tab and arrows
 bind -c rsz ,     eval "prev"        "command -c rsz" # Prev
@@ -121,8 +128,8 @@ bind -c rsz -k kr eval "focus right" "command -c rsz" # Right
 bind -c rsz -k ku eval "focus up"    "command -c rsz" # Up
 bind -c rsz -k kd eval "focus down" "command -c rsz" # Down
 
-# show window list as Alt + l or super + l
-bindkey "^[l" windowlist -b
+# show window list as Alt + , or super + l
+bindkey "^[," windowlist -b
 bind l windowlist -b
 
 # [Alt+i] is split vertical
