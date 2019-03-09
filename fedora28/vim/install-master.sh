@@ -9,7 +9,7 @@ rm -rf $TEMP/*
 
 which npm >/dev/null 2>&1 || ./nodejs-2018.sh
 
-sudo dnf -y install ncurses ncurses-devel lua-devel ctags-etags && \
+sudo dnf -y install ncurses ncurses-devel lua-devel ctags-etags python-devel python3-devel ruby-devel && \
     git clone https://github.com/vim/vim $TEMP/vim && \
     pushd $TEMP/vim && \
     make distclean && \
