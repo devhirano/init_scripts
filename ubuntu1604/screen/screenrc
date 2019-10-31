@@ -71,6 +71,9 @@ bind > eval "exec sh -c '$HOME/.screen/clipboard_exchange.sh screen-to-x'"
 ## COPY to X
 bind < eval "exec sh -c '$HOME/.screen/clipboard_exchange.sh x-to-screen'"
 
+## CHECK COPY BUFFER in SCREEN
+bind c eval "exec sh -c '$HOME/.screen/clipboard_exchange.sh check-buffer'"
+
 ## PASTE
 bind ] eval "paste ."
 
@@ -134,8 +137,8 @@ bind -c rsz -k kr eval "focus right" "command -c rsz" # Right
 bind -c rsz -k ku eval "focus up"    "command -c rsz" # Up
 bind -c rsz -k kd eval "focus down" "command -c rsz" # Down
 
-# show window list as Alt + , or super + l
-bindkey "^[," windowlist -b
+# show window list as Alt + l or super + l
+bindkey "^[l" windowlist -b
 bind l windowlist -b
 
 # [Alt+i] is split vertical
